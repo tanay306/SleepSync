@@ -97,8 +97,8 @@ const dashboardRoutes = [
     layout: "/user",
   },
   // {
-  //   path: "/notifications",
-  //   name: "Notifications",
+  //   path: "/sleep-well",
+  //   name: "Sleep Well",
   //   rtlName: "إخطارات",
   //   icon: Notifications,
   //   component: NotificationsPage,
@@ -112,14 +112,14 @@ const dashboardRoutes = [
   //   component: RTLPage,
   //   layout: "/rtl"
   // },
-  // {
-  //   path: "/upgrade-to-pro",
-  //   name: "Donate for Good",
-  //   rtlName: "التطور للاحترافية",
-  //   icon: "support",
-  //   component: UpgradeToPro,
-  //   layout: "/user"
-  // }
+  {
+    path: "/sleep-well",
+    name: "Sleep Well",
+    rtlName: "التطور للاحترافية",
+    icon: "support",
+    component: UpgradeToPro,
+    layout: "/user"
+  }
 ];
 
 export default dashboardRoutes;
