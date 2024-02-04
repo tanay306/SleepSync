@@ -117,6 +117,7 @@ export default function UpgradeToPro() {
   const adminFileUpload = 'http://127.0.0.1:8000/ecg/predict'
   
   return (
+    <>
     <StyledFlex>
       <div>
         Allow access to daily user analytics and share data?
@@ -176,6 +177,16 @@ export default function UpgradeToPro() {
         </Box>
       </Modal>
     </StyledFlex>
+
+    <StyledHeader>Why should you sleep well?</StyledHeader>
+    <StyledColFlex>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/MBVpK4EiwmM?si=1ZJAnSk_25HxAUKy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/iMfsa7ntJZE?si=IJ1mkikTPJeBzgTb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/P_i6yqWjASk?si=YQ0hLkuDy6qcGLkj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </StyledColFlex>
+    </>
   );
 }
 
@@ -185,4 +196,18 @@ const StyledFlex = styled.div`
   justify-content: center;
   align-items: center;
   gap: 14px;
+`;
+
+const StyledColFlex = styled.div`
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+`;
+
+const StyledHeader = styled.div`
+  margin-top: 12px;
+  font-size: 28px;
 `;
