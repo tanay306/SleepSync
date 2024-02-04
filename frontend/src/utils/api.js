@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 
-const url = "http://localhost:5000/graphql";
+const url = "http://localhost:8082/graphql";
 
 const api = {
   authUser: async (email, password) => {
