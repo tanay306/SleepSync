@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
@@ -9,10 +9,28 @@ import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import Danger from "components/Typography/Danger.js";
 import Success from "components/Typography/Success.js";
-import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
+import Button from "components/CustomButtons/Button.js";
+import styled from 'styled-components';
+import Box from "@material-ui/core/Box";
+import api from "utils/api";
+import Modal from "@material-ui/core/Modal";
+import Typography from "@material-ui/core/Typography";
+import { useHistory } from 'react-router-dom';
+
+const modalStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "0.5px  #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const styles = {
   cardCategoryWhite: {
@@ -84,129 +102,87 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 export default function UpgradeToPro() {
+  const history = useHistory();
   const classes = useStyles();
+  const [file, setFile] = useState(0);
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    history.push({
+      pathname: "/user/doctors",
+      search: `?query=Sleep Specialist`,
+    });
+  };
+
+  const adminFileUpload = 'http://127.0.0.1:8000/ecg/predict'
+  
   return (
-    <GridContainer justify="center">
-      {/* <GridItem xs={12} sm={12} md={8}>
-        <Card>
-          <CardHeader color="info">
-            <h4 className={classes.cardTitleWhite}>
-              Material Dashboard PRO React
-            </h4>
-            <p className={classes.cardCategoryWhite}>
-              Are you looking for more components? Please check our Premium
-              Version of Material Dashboard Angular.
-            </p>
-          </CardHeader>
-          <CardBody>
-            <div className={classes.tableUpgradeWrapper}>
-              <table className={classes.table}>
-                <thead>
-                  <tr>
-                    <th />
-                    <th className={classes.center}>Free</th>
-                    <th className={classes.center}>PRO</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Components</td>
-                    <td className={classes.center}>30</td>
-                    <td className={classes.center}>200</td>
-                  </tr>
-                  <tr>
-                    <td>Plugins</td>
-                    <td className={classes.center}>2</td>
-                    <td className={classes.center}>10</td>
-                  </tr>
-                  <tr>
-                    <td>Example Pages</td>
-                    <td className={classes.center}>7</td>
-                    <td className={classes.center}>28</td>
-                  </tr>
-                  <tr>
-                    <td>Login, Register, Pricing, Lock Pages</td>
-                    <td className={classes.center}>
-                      <Danger>
-                        <Close />
-                      </Danger>
-                    </td>
-                    <td className={classes.center}>
-                      <Success>
-                        <Check />
-                      </Success>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      ReactTables, ReactVectorMap, ReactSweetAlert, Wizard,
-                      Validation, ReactBigCalendar etc...
-                    </td>
-                    <td className={classes.center}>
-                      <Danger>
-                        <Close />
-                      </Danger>
-                    </td>
-                    <td className={classes.center}>
-                      <Success>
-                        <Check />
-                      </Success>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Mini Sidebar</td>
-                    <td className={classes.center}>
-                      <Danger>
-                        <Close />
-                      </Danger>
-                    </td>
-                    <td className={classes.center}>
-                      <Success>
-                        <Check />
-                      </Success>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Premium Support</td>
-                    <td className={classes.center}>
-                      <Danger>
-                        <Close />
-                      </Danger>
-                    </td>
-                    <td className={classes.center}>
-                      <Success>
-                        <Check />
-                      </Success>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td />
-                    <td className={classes.center}>Free</td>
-                    <td className={classes.center}>Just $59</td>
-                  </tr>
-                  <tr>
-                    <td />
-                    <td className={classes.center}>
-                      <Button round disabled>
-                        Current Version
-                      </Button>
-                    </td>
-                    <td className={classes.center}>
-                      <Button
-                        round
-                        color="danger"
-                        // href="https://www.creative-tim.com/product/material-dashboard-pro-react?ref=mdr-upgrade-live"
-                      >
-                        Upgrade to Pro
-                      </Button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </CardBody>
-        </Card>
-      </GridItem> */}
-    </GridContainer>
+    <StyledFlex>
+      <div>
+        Allow access to daily user analytics and share data?
+      </div>
+      <form method="POST" action={adminFileUpload} enctype="multipart/form-data" >
+          <input type='file' name="file" onChange={e => setFile(e.target.files[0])}/>
+          <Button color={'primary'} type="submit">Submit</Button>
+      </form>
+      {/* <input type="file" onChange={e => setFile(e.target.files[0])}/>
+      <Button color={"primary"} onClick={async () => {
+        const res = await api.fetchSleepAnalytics(file);
+
+        if(true){
+          history.push({
+            pathname: "/user/doctors",
+            search: `?query=Sleep Specialist`,
+          });
+        }
+      }}>Submit</Button> */}
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={modalStyle}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Considering your symptoms, you should consult a Sleep Specialist.
+          </Typography>
+          <Button
+            color="warning"
+            onClick={() => {
+              handleClose();
+            }}
+            style={{
+              marginRight: "10%",
+              marginTop: "10px"
+            }}
+          >
+            View All Doctors
+          </Button>
+          <Button
+            color="warning"
+            onClick={() => {
+              cancelModal();
+            }}
+            style={{
+              marginTop: "10px"
+            }}
+          >
+            Cancel
+          </Button>
+          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Your profile has been updated successfully
+          </Typography> */}
+        </Box>
+      </Modal>
+    </StyledFlex>
   );
 }
+
+const StyledFlex = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+`;

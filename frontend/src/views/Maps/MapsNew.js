@@ -223,7 +223,7 @@ function MapsNew() {
                       fontWeight: 800,
                     }}
                   >
-                    ₹{" "}
+                    ${" "}
                     {elem.age === null || elem.age === ""
                       ? "Not Specified"
                       : elem.charge}
