@@ -120,7 +120,7 @@ def predict():
                 return True 
         return False
 
-    model = tf.keras.models.load_model('../machinelearning/final_model.h5')
+    model = tf.keras.models.load_model('./model/final_model.h5')
     test = np.load('uploads/{}'.format(file.filename))
     prediction = model.predict(test, 64)
     prediction = np.array([np.argmax(s) for s in prediction])
