@@ -127,7 +127,7 @@ function MapsNew() {
                   onChange: async (e) => {
                     try {
                       setAllDoctors(
-                        await api.searchDoctorByName(e.target.value)
+                        await api.searchDoctorByName(e.target.value, true)
                       );
                     } catch (error) {
                       console.log(error);
