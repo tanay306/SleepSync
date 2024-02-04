@@ -198,7 +198,7 @@ export default function Dashboard() {
             <CardFooter stats>
               <div className={classes.stats}>
                 <LocalOffer />
-                Tracked from MacroMedic
+                Tracked from SleepSync
               </div>
             </CardFooter>
           </Card>

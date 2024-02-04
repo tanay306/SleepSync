@@ -9,7 +9,7 @@ function Notify(props) {
  
     const buttonClick = () => {
         addNotification({
-            title: 'Notification from MacroMedic',
+            title: 'Notification from SleepSync',
             subtitle: '',
             message: props.msg,
             theme: 'darkblue',

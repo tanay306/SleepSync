@@ -34,7 +34,7 @@ const api = {
     return data.data.data.authUser;
   },
   registerUser: async (
-    name = "MacroMedic",
+    name = "SleepSync",
     // phoneNo = "1234567890",
     email = "macro@gmail.com",
     password = "1234"
