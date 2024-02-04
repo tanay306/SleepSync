@@ -236,7 +236,8 @@ const api = {
     );
     return data.data.data.searchDoctorByName;
   },
-  searchDoctorBySpecialization: async (searchTerm, status) => {
+  searchDoctorBySpecialization: async (searchTerm, status=True) => {
+    console.log(searchTerm, "SEARCH");
     const data = await axios.post(
       url,
       {
@@ -269,6 +270,7 @@ const api = {
         },
       }
     );
+    console.log(data.data);
     return data.data.data.searchDoctorBySpecialization;
   },
   updateUserProfile: async (
@@ -838,6 +840,30 @@ const api = {
     console.log(data);
     console.log("File uploded");
     return data;
+  },
+  fetchSleepAnalytics: async (file) => {
+    console.log('DATA FILE', file)
+    var config = {
+      method: "post",
+      url: "http://127.0.0.1:8000/ecg/predict/",
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Access-Control-Allow-Origin": "*",
+      },
+      data: {file: file},
+    };
+
+    // var response = 0;
+
+    const res = await axios(config);
+    // .then(function (response) {
+    //   console.log(response.data.rating);
+    //   response = response.data.rating;
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    return res.data.response;
   },
 };
 
