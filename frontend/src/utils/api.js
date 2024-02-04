@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 
-const url = "http://localhost:5000/graphql";
+const url = "http://localhost:5050/graphql";
 
 const api = {
   authUser: async (email, password) => {
@@ -187,7 +187,7 @@ const api = {
     const postData = new FormData();
     postData.append("id", id);
     postData.append("doc", files);
-    const data = await axios.post("http://localhost:5000/uploadDoc", postData);
+    const data = await axios.post("http://localhost:5050/uploadDoc", postData);
     console.log(data);
     return data;
   },
@@ -195,7 +195,7 @@ const api = {
     const formData = JSON.stringify({ id: id });
     console.log("IDDDD");
     console.log(id);
-    const data = await axios.post("http://localhost:5000/downloadDoc", {
+    const data = await axios.post("http://localhost:5050/downloadDoc", {
       id: id,
     });
     console.log(data);
@@ -743,7 +743,7 @@ const api = {
     postData.append("id", id);
     postData.append("doc", img);
     const data = await axios.post(
-      "http://localhost:5000/uploadImage",
+      "http://localhost:5050/uploadImage",
       postData
     );
     console.log(data);
